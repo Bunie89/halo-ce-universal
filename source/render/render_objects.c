@@ -152,6 +152,9 @@ enum
 #define OBJECT_LIGHTING_MAXIMUM_COLOR_DELTA 0.03f
 #define OBJECT_LIGHTING_MAXIMUM_SHADOW_VECTOR_DELTA 0.012f
 
+/* the port's (port/linux/game/render_lod.c) */
+float render_lod_scale(void);
+
 /* ---------- macros */
 
 #define object_render_state_get(index) \
@@ -1116,6 +1119,8 @@ static void render_object(
 				object_get_level_of_detail_pixels(data->object_index));
 
 			level_of_detail_pixels = object_get_level_of_detail_pixels(data->object_index);
+			/* port: DETAIL scales how far shadows reach (render_lod.c) */
+			level_of_detail_pixels *= render_lod_scale();
 			shadow_darkness = 1.f - real_rgb_color_brightness(&data->lighting->shadow_color);
 
 			if (level_of_detail_pixels > OBJECT_SHADOW_MINIMUM_PIXELS &&

@@ -62,6 +62,9 @@ SCREENS = {
              "Draw the HUD from the high-res redraws; off\ndraws the game's own pictures.", None),
             ("HIGH-RES TEXT:", "display.high_res_text", ON_OFF,
              "Draw text and titles with high-res fonts; off\ndraws the game's own.", None),
+            ("DETAIL:", "display.detail",
+             [("CLASSIC", "classic"), ("ENHANCED", "enhanced"), ("ULTRA", "ultra")],
+             "How far high-detail models and shadows reach;\nclassic keeps the Xbox's distances.", None),
         ],
     },
     "mouse_settings": {

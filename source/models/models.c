@@ -83,6 +83,9 @@ symbols in this file:
 #include "rasterizer/rasterizer_console_vars.h"
 #include "rasterizer/rasterizer_model_types.h"
 
+/* the port's (port/linux/game/render_lod.c) */
+float render_lod_scale(void);
+
 /* ---------- constants */
 
 enum
@@ -743,6 +746,9 @@ void render_model(
 	profile_enter(render_model_section);
 
 	match_assert("c:\\halo\\SOURCE\\models\\models.c", 82, lighting);
+
+	/* port: DETAIL scales how far high LODs reach (render_lod.c) */
+	level_of_detail_pixels *= render_lod_scale();
 
 	if (model->node_list_checksum==CORTANA_MODEL_NODE_LIST_CHECKSUM &&
 		TEST_FLAG(global_scenario_get()->flags, _scenario_cortana_hack_bit))
